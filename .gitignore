@@ -1,0 +1,16 @@
+# API Keys
+.env
+
+# Build & Distribution
+*.egg-info
+build/
+
+# Agent
+.agent/
+.github/
+
+# Cache
+__pycache__/
+
+# Unnecessary files
+*_preprocessed.txt

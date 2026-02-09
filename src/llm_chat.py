@@ -218,6 +218,7 @@ class LLMChat:
         model: Model,
         verbose: bool = False
     ):
+        print(f"Initializing LLMChat with model: {model}")
         self.model = model
         self.prompts = []
         self.responses = []

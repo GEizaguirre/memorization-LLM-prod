@@ -2,6 +2,8 @@
 
 This repository is an independent, third-party implementation of the methods described in the paper [Extracting books from production language models (2026)](https://arxiv.org/abs/2601.02671). This algorithms serves to prove memorization of documents in production Large Language Models.
 
+In our case, we use it to check if an LLM has memorized business question-SQL pairs of TPC-H queries.
+
 ## Installation
 
 ```bash
@@ -11,7 +13,7 @@ pip install -e .
 
 ## Current implementation
 
-For now, I have only implement the "direct" extraction. This refers to those cases in which a jailbreak (hacking the model scaffold) is not needed, and extraction can be performed with "natural" prompts. For further info check the paper.
+I implement both the "direct" extraction and the BoN extraction (using a jailbreak that hacks the model scaffold). With direct extraction we got 0.7 nv-recall in Gemini-3.5-pro of Frankestein.
 
 ## Usage
 
@@ -25,7 +27,7 @@ python3 scripts/preprocess_txt.py data/frankenstein_very_short.txt
 
 ### Usage
 
-[test/test_direct_extraction_txt.py](test/test_direct_extraction_txt.py) includes a usage example.
+[test/test_extraction_txt.py](test/test_extraction_txt.py) includes a usage example of direct extraction. [test/test_bon_extraction_txt.py](test/test_bon_extraction_txt.py) is for BoN extraction.
 
 It may be compatible with all the models in [src/config.py](src/config.py).
 
@@ -34,6 +36,7 @@ It may be compatible with all the models in [src/config.py](src/config.py).
 
 - Did not "explore different generation configurations: temperature, maximum response length and, where available, frequency penalty and presence penalty" (time issues).
 - The execution finishes when an approximate number of tokens similar to that of the reference text is generated.
+- BoN checks permutated prompts iteratively until one of them achieves more than 0.6 similarity (instead of launching all prompts and selecting the best one).
 
 ## Reference
 

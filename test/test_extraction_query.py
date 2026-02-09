@@ -1,8 +1,8 @@
 
-from direct_extraction import Extractor
+from extraction import Extractor
 from config import Model
 
-FILE_PATH = "data/frankenstein_very_short_preprocessed.txt"
+FILE_PATH = "data/q1.txt"
 MODEL = "gemini_2_5_pro"
 
 
